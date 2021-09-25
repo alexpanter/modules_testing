@@ -98,6 +98,16 @@ of header-only libraries developed for C++, mainly because of the dependency upo
 heavily templated code. This means that all these library headers need to be parsed
 many times in larger projects, which is very sad indeed.
 
+#### Compiling the same headers many times ####
+
+In software in general we consider DRY (don't repeat yourself) a very good pattern
+to follow. Unfortunately though, with header-inclusion we might end up compiling
+something like `stdlib.h` several hundred times for larger projects. A certain hack
+called "precompiled headers" was added to major compilers to remedy this. But they
+are tricky to deal with and require a bit of setup. Modules completely removes the
+need for precompiled headers!
+
+
 #### Many more ####
 
 Feel free to add an issue, and I will extend this post.
