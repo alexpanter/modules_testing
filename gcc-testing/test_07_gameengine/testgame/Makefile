@@ -3,21 +3,29 @@ ENGINE=libengine.so
 LINKENGINE=-Xlinker ./../engine/$(ENGINE)
 APP=testgame
 
-all: gamelib test
+SOURCES=$(shell find . ! -name "test.cpp" -name "*.cpp")
+OBJECTS=$(SOURCES:%.cpp=%.o)
+
+all: build test
 
 run:
 	./$(APP)
 
-gamelib: gamelib.cpp
-	$(GCC) -c $<
+build: $(OBJECTS)
+
+list_sources:
+	@echo "SOURCES:"
+	@echo $(SOURCES)
+	@echo ""
+	@echo "OBJECTS:"
+	@echo $(OBJECTS)
+
+.cpp.o:
+	$(GCC) -c $< -o $@
 
 test: test.cpp
 	$(GCC) $< *.o -o $(APP) $(LINKENGINE)
 
-create_symlink:
-	ln -s ../gcm.cache gcm.cache
-
 clean:
-	@rm -rf gcm.cache/
 	@rm -f *.o
 	@rm -f $(APP)
