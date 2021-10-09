@@ -1,4 +1,4 @@
-export module matlib:sublib;
+export module mathlib:sublib;
 
 export int sub(int a, int b)
 {

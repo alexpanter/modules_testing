@@ -1,4 +1,4 @@
-export module matlib:addlib;
+export module mathlib:addlib;
 
 export int add(int a, int b)
 {
