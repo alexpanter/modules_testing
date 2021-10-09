@@ -1,0 +1,4 @@
+[submodule "gcc-testing/test_09_spdlog/spdlog"]
+	path = gcc-testing/test_09_spdlog/spdlog
+	url = https://github.com/gabime/spdlog
+	branch = v2.x
