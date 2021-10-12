@@ -1,5 +1,7 @@
 export module mathlib;
 
+static int f(int x) { return x + 1; }
+
 export namespace mathlib
 {
 	int add(int a, int b)
