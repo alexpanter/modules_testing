@@ -1,5 +1,5 @@
 import <iostream>;
-import "some_header.hpp";
+import "iostream";
 
 int main()
 {
