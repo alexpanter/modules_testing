@@ -11,7 +11,7 @@ std_headers:
 some_module.o: some_module.cpp
 	$(GCC) -c $< -o $@
 
-partitioned_module.o: partitioned_module-part.cpp partitioned_module.cpp
+partitioned_module.o: partitioned_module-part.cpp partitioned_module-part2.cpp partitioned_module.cpp
 	$(GCC) -c $^
 
 main: main.cpp

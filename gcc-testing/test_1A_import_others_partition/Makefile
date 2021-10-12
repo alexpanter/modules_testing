@@ -1,0 +1,26 @@
+GCC=g++-11 -std=c++20 -fmodules-ts
+
+all: std_headers module_2.o module_1.o main
+
+test: all
+	./main
+
+std_headers:
+	$(GCC) -xc++-system-header iostream
+
+module_2-part.o: module_2-part.cpp
+	$(GCC) -c $< -o $@
+
+module_2.o: module_2.cpp module_2-part.o
+	$(GCC) -c $< -o $@
+
+module_1.o: module_1.cpp module_2.o
+	$(GCC) -c $< -o $@
+
+main: main.cpp module_1.o module_2.o
+	$(GCC) $^ -o $@
+
+clean:
+	@rm -rf gcm.cache/
+	@rm -f *.o
+	@rm -f main

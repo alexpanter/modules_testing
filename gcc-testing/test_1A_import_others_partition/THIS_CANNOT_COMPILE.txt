@@ -1,0 +1,3 @@
+A module cannot import partitions of other modules.
+
+Here, module_2 tries to import module_2:part, which is not allowed.
