@@ -2,3 +2,4 @@ main
 *.so
 *.pcm
 gcm.cache/
+*.o
