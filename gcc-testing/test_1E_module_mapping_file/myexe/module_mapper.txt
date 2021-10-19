@@ -1,2 +1,2 @@
 mylib ../gcm.cache/mylib.gcm
-"<iostream>" ./gcm.cache/usr/include/c++/11/iostream.gcm
+/usr/include/c++/11/iostream ../gcm.cache/usr/include/c++/11/iostream.gcm
