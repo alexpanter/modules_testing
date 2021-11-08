@@ -22,8 +22,8 @@ sufficiently mature.
 After switching to Ubuntu 21 and updating package archives, I got access to the latest
 GCC build, which currently is GCC 11.2. Module support is still not fully implemented,
 though a lot of bugs have been fixed since version 11.1. Full list of missing features
-can be found [here]
-(https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Modules.html#C_002b_002b-Modules).
+can be found
+[here](https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Modules.html#C_002b_002b-Modules).
 
 Notably, missing feature is exported symbols from module partitions. But I have faith
 this will be added within reasonable time.
@@ -40,6 +40,16 @@ Here, I list a few articles which were particularly helpful to me:
 * [vector-of-bool](https://vector-of-bool.github.io/2019/03/10/modules-1.html)
 * [block.feabhas](https://blog.feabhas.com/2021/08/c20-modules-with-gcc11/)
 
+And here is a list of StackOverflow questions which I have tried to answer from
+my current knowledge:
+
+* [GCC query module dependencies](https://stackoverflow.com/questions/66542797/is-there-a-way-to-query-direct-module-dependencies-with-gcc/69604600#69604600)
+* [GCC specify gcm.cache location](https://stackoverflow.com/questions/68451442/how-to-specify-gcm-cache-location-using-g-cmake/69367570#69367570)
+* [MSVC import static header functions](https://stackoverflow.com/questions/69647808/importing-static-functions-in-modularized-c-projects/69648276#69648276)
+* [GCC modules and multiple definitions](https://stackoverflow.com/questions/69502213/c-modules-and-multiple-definition-of/69605376#69605376)
+* [Module kind/sizes: project setup guide](https://stackoverflow.com/questions/69062491/differences-between-c20-module-kinds-sizes/69520545#69520545)
+* [Macro-free logging and tracing](https://stackoverflow.com/questions/68849382/macro-free-logging-and-tracing-in-c20-with-concepts-and-template-specializati/69548243#69548243)
+* [hpp/cpp split of module implementation units](https://stackoverflow.com/questions/69446814/hpp-cpp-split-of-c20-module-implementation-partitions/69520369#69520369)
 
 ## What are my recommmendations? ##
 
