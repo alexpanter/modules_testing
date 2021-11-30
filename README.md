@@ -11,10 +11,22 @@ being told that Microsoft has adopted modules into their visual C++
 compiler pretty well (except that it doesn't support module partitions
 at the time of writing this, Sep. 2021).
 
-I have also pointed fingers at the developers of the amazing
-[premake](https://premake.github.io/docs/) project and kindly asked
-them for integrating module support into the toolchain. I'm being told
-this is in development but _only_ for msvc (Sep. 2021).
+Module support is experimental in all major compilers. And though several
+build systems claim to have support (xmake, cmake, bazel), they are still
+limited to what the compilers can do. Premake has no system yet, and though
+I tried with a proposal for that build system, compiler support is not yet
+sufficiently mature.
+
+## [Update Nov 8th 2021] ##
+
+After switching to Ubuntu 21 and updating package archives, I got access to the latest
+GCC build, which currently is GCC 11.2. Module support is still not fully implemented,
+though a lot of bugs have been fixed since version 11.1. Full list of missing features
+can be found
+[here](https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Modules.html#C_002b_002b-Modules).
+
+Notably, missing feature is exported symbols from module partitions. But I have faith
+this will be added within reasonable time.
 
 ## How can I learn? ##
 
@@ -28,6 +40,16 @@ Here, I list a few articles which were particularly helpful to me:
 * [vector-of-bool](https://vector-of-bool.github.io/2019/03/10/modules-1.html)
 * [block.feabhas](https://blog.feabhas.com/2021/08/c20-modules-with-gcc11/)
 
+And here is a list of StackOverflow questions which I have tried to answer from
+my current knowledge:
+
+* [GCC query module dependencies](https://stackoverflow.com/questions/66542797/is-there-a-way-to-query-direct-module-dependencies-with-gcc/69604600#69604600)
+* [GCC specify gcm.cache location](https://stackoverflow.com/questions/68451442/how-to-specify-gcm-cache-location-using-g-cmake/69367570#69367570)
+* [MSVC import static header functions](https://stackoverflow.com/questions/69647808/importing-static-functions-in-modularized-c-projects/69648276#69648276)
+* [GCC modules and multiple definitions](https://stackoverflow.com/questions/69502213/c-modules-and-multiple-definition-of/69605376#69605376)
+* [Module kind/sizes: project setup guide](https://stackoverflow.com/questions/69062491/differences-between-c20-module-kinds-sizes/69520545#69520545)
+* [Macro-free logging and tracing](https://stackoverflow.com/questions/68849382/macro-free-logging-and-tracing-in-c20-with-concepts-and-template-specializati/69548243#69548243)
+* [hpp/cpp split of module implementation units](https://stackoverflow.com/questions/69446814/hpp-cpp-split-of-c20-module-implementation-partitions/69520369#69520369)
 
 ## What are my recommmendations? ##
 
@@ -40,6 +62,18 @@ But I have managed to get gcc working with the following items:
 - module partitions
 - compiling standard library headers into modules (iostream, algorithm, cstdlib, etc.)
 - building and linking with a shared library which exposes a module (no DLL import/export macros needed so far)
+
+Other things I have found with modules:
+- DLL export/import directives are not necessary (finally, we can get rid of them!)
+- Libraries can be built and linked without a single header file (Noice!)
+- Code is greatly simplified with no distinction between declaration and definition
+- We can stop writing `inline` everywhere, and obtain some of the original meaning of that word
+- Modules are very simple to work with
+
+C++ is a complicated language. Nobody can disagree. So I'm a huge fan of features
+that simplify the language. Together with proposals for pattern matching with is/as,
+in/out parameter keywords, concepts, etc., modules is an significant effort in that
+direction.
 
 As a test, I was using the xxhash library for testing wrapping a third-party
 header-only library inside a module. I could not get this to work. So the
@@ -116,10 +150,15 @@ Feel free to add an issue, and I will extend this post.
 
 ## Conclusion ##
 
-Headers will probably not be a magical fix to all C++-related problems,
+Modules will probably not be a magical fix to all C++-related problems,
 but I am convinced that over time this has the potential to revolutionize
 the language, remove a lot of the anger and resentment upon the complicated
 build setups often required for C++-projects, and introduce a lot of new
 programmers to the language who will happily live their lives unknowlingly
 of the header-horrors of the past.
+
+Arguably the most important feature in C++ since templates, modules will
+greatly modernize the language and can potentially remove _a lot_ of
+unnecessary complexity (I would argue at least 50%, thought that is clearly
+and undocumented postulate!).
 

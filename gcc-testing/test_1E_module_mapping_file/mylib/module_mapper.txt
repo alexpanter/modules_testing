@@ -1,1 +1,2 @@
 mylib ../gcm.cache/mylib.gcm
+mylib:part ../gcm.cache/mylib-part.gcm
