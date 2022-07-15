@@ -17,6 +17,49 @@ limited to what the compilers can do. Premake has no system yet, and though
 I tried with a proposal for that build system, compiler support is not yet
 sufficiently mature.
 
+## [Update July 15th 2022] ##
+
+I can't believe it has already been (almost) a year since I created this repository and
+began testing for real. And already 7 stars, what a world! :)
+
+Huge dissappointment, first of all, that GCC still has lacking support - almost _nothing_
+has happened in the last year (except for a new major version, 12, still with the same
+module-related bugs). It seems that, possibly, compiler devs are waiting for the committee
+to take further action on their goals presented during CppCon '21 to modularize the
+entire standard library(!). Clang developers are also hesitant about the state of
+completeness of their implementation.
+
+#### Notes regarding exported symbols from submodules ###
+
+It seems that we cannot yet expect, if ever, to get proper support for exported symbols
+from submodules. A couple of problems are related to this, most significantly the
+dependenies and thus enforced building order of not only modules but of their submodules
+as well. To quote the Clang LLVM docs for module semantics
+([link](https://clang.llvm.org/docs/Modules.html)):
+
+_"Entities within a submodule that has already been built are visible when building later
+submodules in that module. This can lead to fragile modules that depend on the build order
+used for the submodules of the module, and should not be relied upon.
+This behavior is subject to change."_
+
+The GCC compiler status has also not changed significantly, and still seems very hesitant
+to implement this feature ([link](https://gcc.gnu.org/projects/cxx-status.html)).
+
+#### Conclusion ####
+
+We should not expect submodule exports to ever become a reliable reality.
+
+#### Suggestions for writing code with modules ####
+
+Accepting the danger of opinion, I will aim to provide some general guidelines for
+writing code with modules. These guidelines can be found
+[here](https://github.com/alexpanter/modules_testing/blob/master/guidelines.md),
+and are subject to change.
+
+Please feel free to post an issue if you dissagree with something, or if something
+should be added.
+
+
 ## [Update Nov 8th 2021] ##
 
 After switching to Ubuntu 21 and updating package archives, I got access to the latest
@@ -27,6 +70,7 @@ can be found
 
 Notably, missing feature is exported symbols from module partitions. But I have faith
 this will be added within reasonable time.
+
 
 ## How can I learn? ##
 
@@ -50,6 +94,7 @@ my current knowledge:
 * [Module kind/sizes: project setup guide](https://stackoverflow.com/questions/69062491/differences-between-c20-module-kinds-sizes/69520545#69520545)
 * [Macro-free logging and tracing](https://stackoverflow.com/questions/68849382/macro-free-logging-and-tracing-in-c20-with-concepts-and-template-specializati/69548243#69548243)
 * [hpp/cpp split of module implementation units](https://stackoverflow.com/questions/69446814/hpp-cpp-split-of-c20-module-implementation-partitions/69520369#69520369)
+
 
 ## What are my recommmendations? ##
 
